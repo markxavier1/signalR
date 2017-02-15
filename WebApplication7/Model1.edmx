@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="red_multimediaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cases_tbl">
+          <Key>
+            <PropertyRef Name="CaseId" />
+          </Key>
+          <Property Name="CaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseName" Type="nvarchar" MaxLength="60" />
+          <Property Name="CaseTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="CaseDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="CaseDescription" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tbl_subject">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sub_name" Type="nvarchar" MaxLength="300" />
+          <Property Name="sub_address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="sub_sex" Type="nvarchar" MaxLength="300" />
+          <Property Name="sub_email" Type="nvarchar(max)" />
+          <Property Name="sub_anti_national" Type="nvarchar" MaxLength="300" />
+          <Property Name="sub_organization" Type="nvarchar" MaxLength="1000" />
+          <Property Name="sub_position" Type="nvarchar" MaxLength="1000" />
+          <Property Name="sub_source" Type="nvarchar" MaxLength="300" />
+          <Property Name="sub_profile_pic" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_tbl_subject_tbl_subject">
+          <End Role="tbl_subject" Type="Self.tbl_subject" Multiplicity="1" />
+          <End Role="tbl_subject1" Type="Self.tbl_subject" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="tbl_subject1">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="red_multimediaModelStoreContainer">
+          <EntitySet Name="Cases_tbl" EntityType="Self.Cases_tbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_subject" EntityType="Self.tbl_subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_subject_tbl_subject" Association="Self.FK_tbl_subject_tbl_subject">
+            <End Role="tbl_subject" EntitySet="tbl_subject" />
+            <End Role="tbl_subject1" EntitySet="tbl_subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="red_multimediaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cases_tbl">
+          <Key>
+            <PropertyRef Name="CaseId" />
+          </Key>
+          <Property Name="CaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="CaseTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CaseDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_subject">
+          <Key>
+            <PropertyRef Name="sub_id" />
+          </Key>
+          <Property Name="sub_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sub_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="sub_address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="sub_sex" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="sub_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sub_anti_national" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="sub_organization" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="sub_position" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="sub_source" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="sub_profile_pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="tbl_subject1" Relationship="Self.FK_tbl_subject_tbl_subject" FromRole="tbl_subject" ToRole="tbl_subject1" />
+          <NavigationProperty Name="tbl_subject2" Relationship="Self.FK_tbl_subject_tbl_subject" FromRole="tbl_subject1" ToRole="tbl_subject" />
+        </EntityType>
+        <Association Name="FK_tbl_subject_tbl_subject">
+          <End Role="tbl_subject" Type="Self.tbl_subject" Multiplicity="1" />
+          <End Role="tbl_subject1" Type="Self.tbl_subject" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_subject">
+              <PropertyRef Name="sub_id" />
+            </Principal>
+            <Dependent Role="tbl_subject1">
+              <PropertyRef Name="sub_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="red_multimediaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cases_tbl" EntityType="Self.Cases_tbl" />
+          <EntitySet Name="tbl_subject" EntityType="Self.tbl_subject" />
+          <AssociationSet Name="FK_tbl_subject_tbl_subject" Association="Self.FK_tbl_subject_tbl_subject">
+            <End Role="tbl_subject" EntitySet="tbl_subject" />
+            <End Role="tbl_subject1" EntitySet="tbl_subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="red_multimediaModelStoreContainer" CdmEntityContainer="red_multimediaEntities">
+          <EntitySetMapping Name="Cases_tbl">
+            <EntityTypeMapping TypeName="red_multimediaModel.Cases_tbl">
+              <MappingFragment StoreEntitySet="Cases_tbl">
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CaseName" ColumnName="CaseName" />
+                <ScalarProperty Name="CaseTime" ColumnName="CaseTime" />
+                <ScalarProperty Name="CaseDate" ColumnName="CaseDate" />
+                <ScalarProperty Name="CaseDescription" ColumnName="CaseDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_subject">
+            <EntityTypeMapping TypeName="red_multimediaModel.tbl_subject">
+              <MappingFragment StoreEntitySet="tbl_subject">
+                <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+                <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+                <ScalarProperty Name="sub_address" ColumnName="sub_address" />
+                <ScalarProperty Name="sub_sex" ColumnName="sub_sex" />
+                <ScalarProperty Name="sub_email" ColumnName="sub_email" />
+                <ScalarProperty Name="sub_anti_national" ColumnName="sub_anti_national" />
+                <ScalarProperty Name="sub_organization" ColumnName="sub_organization" />
+                <ScalarProperty Name="sub_position" ColumnName="sub_position" />
+                <ScalarProperty Name="sub_source" ColumnName="sub_source" />
+                <ScalarProperty Name="sub_profile_pic" ColumnName="sub_profile_pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

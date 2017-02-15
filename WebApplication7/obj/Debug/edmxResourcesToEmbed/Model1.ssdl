@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="red_multimediaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cases_tbl">
+    <Key>
+      <PropertyRef Name="CaseId" />
+    </Key>
+    <Property Name="CaseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseName" Type="nvarchar" MaxLength="60" />
+    <Property Name="CaseTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="CaseDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="CaseDescription" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="tbl_subject">
+    <Key>
+      <PropertyRef Name="sub_id" />
+    </Key>
+    <Property Name="sub_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sub_name" Type="nvarchar" MaxLength="300" />
+    <Property Name="sub_address" Type="nvarchar" MaxLength="1000" />
+    <Property Name="sub_sex" Type="nvarchar" MaxLength="300" />
+    <Property Name="sub_email" Type="nvarchar(max)" />
+    <Property Name="sub_anti_national" Type="nvarchar" MaxLength="300" />
+    <Property Name="sub_organization" Type="nvarchar" MaxLength="1000" />
+    <Property Name="sub_position" Type="nvarchar" MaxLength="1000" />
+    <Property Name="sub_source" Type="nvarchar" MaxLength="300" />
+    <Property Name="sub_profile_pic" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_tbl_subject_tbl_subject">
+    <End Role="tbl_subject" Type="Self.tbl_subject" Multiplicity="1" />
+    <End Role="tbl_subject1" Type="Self.tbl_subject" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_subject">
+        <PropertyRef Name="sub_id" />
+      </Principal>
+      <Dependent Role="tbl_subject1">
+        <PropertyRef Name="sub_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="red_multimediaModelStoreContainer">
+    <EntitySet Name="Cases_tbl" EntityType="Self.Cases_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_subject" EntityType="Self.tbl_subject" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_subject_tbl_subject" Association="Self.FK_tbl_subject_tbl_subject">
+      <End Role="tbl_subject" EntitySet="tbl_subject" />
+      <End Role="tbl_subject1" EntitySet="tbl_subject" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="red_multimediaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cases_tbl">
+    <Key>
+      <PropertyRef Name="CaseId" />
+    </Key>
+    <Property Name="CaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CaseName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="CaseTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CaseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CaseDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_subject">
+    <Key>
+      <PropertyRef Name="sub_id" />
+    </Key>
+    <Property Name="sub_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sub_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="sub_address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="sub_sex" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="sub_email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sub_anti_national" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="sub_organization" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="sub_position" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="sub_source" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="sub_profile_pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tbl_subject1" Relationship="Self.FK_tbl_subject_tbl_subject" FromRole="tbl_subject" ToRole="tbl_subject1" />
+    <NavigationProperty Name="tbl_subject2" Relationship="Self.FK_tbl_subject_tbl_subject" FromRole="tbl_subject1" ToRole="tbl_subject" />
+  </EntityType>
+  <Association Name="FK_tbl_subject_tbl_subject">
+    <End Role="tbl_subject" Type="Self.tbl_subject" Multiplicity="1" />
+    <End Role="tbl_subject1" Type="Self.tbl_subject" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_subject">
+        <PropertyRef Name="sub_id" />
+      </Principal>
+      <Dependent Role="tbl_subject1">
+        <PropertyRef Name="sub_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="red_multimediaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cases_tbl" EntityType="Self.Cases_tbl" />
+    <EntitySet Name="tbl_subject" EntityType="Self.tbl_subject" />
+    <AssociationSet Name="FK_tbl_subject_tbl_subject" Association="Self.FK_tbl_subject_tbl_subject">
+      <End Role="tbl_subject" EntitySet="tbl_subject" />
+      <End Role="tbl_subject1" EntitySet="tbl_subject" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

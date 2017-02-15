@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="red_multimediaModelStoreContainer" CdmEntityContainer="red_multimediaEntities">
+    <EntitySetMapping Name="Cases_tbl">
+      <EntityTypeMapping TypeName="red_multimediaModel.Cases_tbl">
+        <MappingFragment StoreEntitySet="Cases_tbl">
+          <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+          <ScalarProperty Name="CaseName" ColumnName="CaseName" />
+          <ScalarProperty Name="CaseTime" ColumnName="CaseTime" />
+          <ScalarProperty Name="CaseDate" ColumnName="CaseDate" />
+          <ScalarProperty Name="CaseDescription" ColumnName="CaseDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_subject">
+      <EntityTypeMapping TypeName="red_multimediaModel.tbl_subject">
+        <MappingFragment StoreEntitySet="tbl_subject">
+          <ScalarProperty Name="sub_id" ColumnName="sub_id" />
+          <ScalarProperty Name="sub_name" ColumnName="sub_name" />
+          <ScalarProperty Name="sub_address" ColumnName="sub_address" />
+          <ScalarProperty Name="sub_sex" ColumnName="sub_sex" />
+          <ScalarProperty Name="sub_email" ColumnName="sub_email" />
+          <ScalarProperty Name="sub_anti_national" ColumnName="sub_anti_national" />
+          <ScalarProperty Name="sub_organization" ColumnName="sub_organization" />
+          <ScalarProperty Name="sub_position" ColumnName="sub_position" />
+          <ScalarProperty Name="sub_source" ColumnName="sub_source" />
+          <ScalarProperty Name="sub_profile_pic" ColumnName="sub_profile_pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
